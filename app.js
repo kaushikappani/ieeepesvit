@@ -209,7 +209,7 @@ app.post('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 });
-const port = process.env.PORT || 1900;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`server running in port ${port}`);
 })
