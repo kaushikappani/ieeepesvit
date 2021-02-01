@@ -1,0 +1,24 @@
+{
+    "name":"IEEE-PES-VIT",
+    "short_name":"IEEE-PES",
+    "description":"Power and energy society",
+    "icons":[
+        {
+            "src":"images/pes32x32.ICO",
+            "type":"image/png",
+            "sizes":"32x32"
+        },
+        {
+            "src":"images/pes192x192.ICO",
+            "type":"image/png",
+            "sizes":"192x192"
+        }
+
+    ],
+    "start_url":"/?ref=app",
+    "display":"standalone",
+    "theme_color":"#708090",
+    "background_color":"#444444",
+    "scope":"/",
+    "prefer_related_applications":true
+}
