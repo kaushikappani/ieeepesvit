@@ -1,0 +1,245 @@
+/*-- Body Reset --*/
+body {
+  overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
+  color: #616971;
+}
+
+/* ========preloader==========*/
+#loading {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: url("Spinner-1s-200px.gif") no-repeat center;
+  z-index: 9999999;
+}
+
+/*============= TOP BAR HEADER =============*/
+.top-bar {
+  background: #7aaec4;
+  height: 2.8rem;
+  padding: .5rem 0;
+}
+
+.top-bar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+/*============= NAVIGATION =============*/
+.navbar-brand img {
+  height: 3rem;
+}
+
+.navbar {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  box-shadow: 0 .5rem .5rem rgba(0, 0, 0, .9);
+  z-index: 1;
+}
+
+.nav-item {
+  padding: .5rem;
+}
+
+.nav-link {
+  color: #5b5555 !important;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: #00ad5f !important;
+}
+
+/*============= CAROUSEL =============*/
+
+#carousel {
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, .1);
+}
+
+.carousel-inner {
+  max-height: 38rem !important;
+}
+
+/*---Change Carousel Transition Speed --*/
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item-next {
+  transition: transform 1.2s ease;
+}
+
+/*-- Carousel Content --*/
+.carousel-caption {
+  position: absolute;
+  top: 54%;
+  transform: translateY(-30%);
+  text-decoration: uppercase;
+}
+
+.bg-custom {
+  background-color: rgba(0, 0, 0, .4);
+  color: white;
+  border-radius: .1%;
+}
+
+.carousel-caption h1 {
+  font-size: 3.8rem;
+  text-shadow: 0 1rem .3rem rgba(0, 0, 0, 1);
+}
+
+.border-primary {
+  border-top: .2rem solid #4981b3 !important;
+}
+
+.carousel-caption h3 {
+  font-size: 2.2rem;
+  text-shadow: 0 .1rem .3rem rgba(0, 0, 0, 1);
+}
+
+.btn-lg {
+  border-radius: 0;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.btn-danger {
+  background-color: #AC2615;
+  border: .05rem solid #AC2615;
+}
+
+.btn-primary {
+  background-color: #4981b3;
+  border: .05rem solid #4981b3;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #68a0d2 !important;
+  border: .1rem solid #68a0d2 !important;
+}
+
+/*===== FIXED BACKGROUND IMG =====*/
+
+.fixed {
+  background-image: url('../img/matrix.jpg');
+  position: fixed;
+}
+
+.fixed-background {
+  padding: 10rem 0;
+}
+
+/*-- Emoji Navbar --*/
+
+
+/*============= SOCKET =============*/
+
+.socket {
+  background-color: #222222;
+  border-top: .1rem;
+}
+
+/*============= MEDIA QUERIES =============*/
+
+/* Devices under 1199px (xl) */
+@media (max-width: 1199.98px) {
+  .carousel-caption h1 {
+    font-size: 2.8rem;
+  }
+
+  .carousel-caption h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width:400px) {
+  .main-image {
+    height: 140px
+  }
+}
+
+/* Devices under 992px (lg) */
+@media (max-width: 991.98px) {
+  .carousel-caption h1 {
+    font-size: 2.5rem;
+  }
+
+  .carousel-caption h3 {
+    font-size: 1.5rem;
+  }
+
+  .btn-lg {
+    font-size: .95rem;
+  }
+}
+
+
+/*============ BOOTSTRAP BREAK POINTS:
+
+Extra small (xs) devices (portrait phones, less than 576px)
+No media query since this is the default in Bootstrap
+
+Small (sm) devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+Medium (md) devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+Large (lg) devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+Extra (xl) large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+=============*/
+
+/*-- Bootstrap Mobile Gutter Fix --*/
+.row,
+.container-fluid {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+/*-- Fixed Background Image --*/
+.fixed-background {
+  position: relative;
+  width: 100%;
+  z-index: 1000 !important;
+}
+
+.fixed-wrap {
+  clip: rect(0, auto, auto, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -999 !important;
+}
+
+.fixed {
+  z-index: -999 !important;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+;
+
+/* blog page */
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
