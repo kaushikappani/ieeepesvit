@@ -35,7 +35,7 @@ app
     .use('/blog', express.static(__dirname + '/public'));
 app.use(
   session({
-    secret: 'secret',
+    secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true
   })
