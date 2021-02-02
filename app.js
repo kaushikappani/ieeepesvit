@@ -107,9 +107,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
-    res.render('contact', {
-        success:false
-    })
+    res.render('contact')
 });
 app.get('/events', (req, res) => {
     res.render('events')
@@ -179,9 +177,7 @@ app.post('/contact', (req, res) => {
         date: new Date()
     });
     message.save().then(() => {
-        res.render('contact', {
-            success:true
-        })
+        res.redirect('/')
     }).catch((err) => {
         res.redirect('/')
     })
