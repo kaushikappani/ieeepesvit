@@ -65,10 +65,16 @@ const messageSchema = {
     message: String,
     date:String,
 };
-
+const registrationSchema = {
+    name: String,
+    RegisterNumber: String,
+    number:String,
+    email:String,
+}
 
 const Blog = mongoose.model('Blog', blogSchema);
 const Message = mongoose.model('Message', messageSchema);
+const Registration = mongoose.model('Registration', registrationSchema);
 
 //========get routes =====//
 
@@ -116,13 +122,15 @@ app.get('/admin', ensureAuthenticated, (req, res) => {
     Message.find({}).sort({'_id':-1}).then((messages) => {
         Blog.find({}).then((blogs) => {
             User.find({}).then((users) => {
-                res.render('admin', {
+                Registration.find({}).then((registrations) => {
+                    res.render('admin', {
                 messages,
                 blogs,
-                    users,
+                users,
+                registrations,
                 user:req.user
-                
-        })
+                 })
+               })
             })
         })
     })
@@ -142,9 +150,16 @@ app.get('/blog/delete/:id', ensureAuthenticated,(req, res) => {
         res.redirect('/admin')
     )
 });
+app.get('/register', (req, res) => {
+    res.render('register')
+});
+app.get('/success',(req, res)=> {
+    res.render('success')
+})
 app.get('/sitemap', (req, res) => {
     res.sendFile(__dirname + '/sitemap.xml')
-  })
+});
+
 //=======post routes========//
 app.post('/register',ensureAuthenticated, (req, res) => {
     if (req.user.email == 'kaushikappani@gmail.com') {
@@ -191,21 +206,34 @@ app.post('/login', (req, res, next) => {
         failureFlash: false
     })(req, res, next);
 });
-app.post('/blogpost', ensureAuthenticated,(req, res) => {
+app.post('/blogpost', ensureAuthenticated, (req, res) => {
     const blog = new Blog({
         title: req.body.title.split('"').join(''),
         text: req.body.content.split('"').join(''),
         date: new Date(),
         image: req.body.image,
         link: req.body.title.split(' ').join(''),
-        views:0
+        views: 0
     });
     blog.save().then(() => {
         res.redirect('/admin')
     }).catch((err) => {
         res.redirect('/admin')
     })
-}) 
+});
+app.post('/eventregister', (req, res) => {
+    const registration = new Registration({
+        name: req.body.name,
+        RegisterNumber: req.body.regno,
+        number: req.body.number,
+        email: req.body.email,
+    });
+    registration.save().then(() => {
+        res.redirect('/success')
+    }).catch((err) => {
+        res.redirect('/register')
+    })
+})
 
 app.post('/logout', (req, res) => {
     req.logout();
