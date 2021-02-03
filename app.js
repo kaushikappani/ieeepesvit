@@ -141,8 +141,10 @@ app.get('/blog/delete/:id', ensureAuthenticated,(req, res) => {
     Blog.findByIdAndDelete({ _id: req.params.id }).then(
         res.redirect('/admin')
     )
-})
-
+});
+app.get('/sitemap', (req, res) => {
+    res.sendFile(__dirname + '/sitemap.xml')
+  })
 //=======post routes========//
 app.post('/register',ensureAuthenticated, (req, res) => {
     if (req.user.email == 'kaushikappani@gmail.com') {
