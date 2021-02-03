@@ -68,9 +68,9 @@ const messageSchema = {
 const registrationSchema = {
     name: String,
     RegisterNumber: String,
-    number:String,
-    email:String,
-}
+    number: String,
+    email: String,
+};
 
 const Blog = mongoose.model('Blog', blogSchema);
 const Message = mongoose.model('Message', messageSchema);
