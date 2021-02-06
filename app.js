@@ -122,21 +122,18 @@ app.get('/admin', ensureAuthenticated, (req, res) => {
     Message.find({}).sort({'_id':-1}).then((messages) => {
         Blog.find({}).then((blogs) => {
             User.find({}).then((users) => {
-                Registration.find({}).then((registrations) => {
-                    res.render('admin', {
+                 res.render('admin', {
                 messages,
                 blogs,
                 users,
-                registrations,
                 user:req.user
                  })
-               })
             })
         })
     })
     
 });
-app.get('/login', (req, res) => {
+app.get('/login', forwardAuthenticated,(req, res) => {
     res.render('login')
 })
 
