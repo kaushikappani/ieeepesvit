@@ -153,9 +153,9 @@ app.get('/blog/delete/:id', ensureAuthenticated,(req, res) => {
 app.get('/register', (req, res) => {
     res.render('register')
 });
-app.get('/success',(req, res)=> {
-    res.render('success')
-})
+// app.get('/success',(req, res)=> {
+//     res.render('success')
+// })
 app.get('/sitemap', (req, res) => {
     res.sendFile(__dirname + '/sitemap.xml')
 });
@@ -221,19 +221,19 @@ app.post('/blogpost', ensureAuthenticated, (req, res) => {
         res.redirect('/admin')
     })
 });
-app.post('/eventregister', (req, res) => {
-    const registration = new Registration({
-        name: req.body.name,
-        RegisterNumber: req.body.regno,
-        number: req.body.number,
-        email: req.body.email,
-    });
-    registration.save().then(() => {
-        res.redirect('/success')
-    }).catch((err) => {
-        res.redirect('/register')
-    })
-})
+// app.post('/eventregister', (req, res) => {
+//     const registration = new Registration({
+//         name: req.body.name,
+//         RegisterNumber: req.body.regno,
+//         number: req.body.number,
+//         email: req.body.email,
+//     });
+//     registration.save().then(() => {
+//         res.redirect('/success')
+//     }).catch((err) => {
+//         res.redirect('/register')
+//     })
+// })
 
 app.post('/logout', (req, res) => {
     req.logout();
