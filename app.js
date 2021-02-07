@@ -156,7 +156,9 @@ app.get('/register', (req, res) => {
 app.get('/sitemap', (req, res) => {
     res.sendFile(__dirname + '/sitemap.xml')
 });
-
+app.get('/.well-known/pki-validation/643742EF84997D5E2A29C5221D6EE831.txt', (req, res) => {
+    res.send('643742EF84997D5E2A29C5221D6EE831.txt')
+})
 //=======post routes========//
 app.post('/register',ensureAuthenticated, (req, res) => {
     if (req.user.email == 'kaushikappani@gmail.com') {
