@@ -4,7 +4,7 @@
   "description": "blogging website",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js && exit 1"
   },
   "author": "kaushik appani",
   "license": "ISC",
