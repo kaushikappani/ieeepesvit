@@ -159,6 +159,9 @@ app.get('/sitemap', (req, res) => {
 app.get('/cert/certificate', (req, res) => {
     res.send('certificate.crt')
 });
+app.get('/cert/certificate', (req, res) => {
+    res.send('certificate.crt')
+});
 app.get('/cert/privatekey', (req, res) => {
     res.send('private.key')
 })
