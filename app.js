@@ -153,15 +153,6 @@ app.get('/register', (req, res) => {
 // app.get('/success',(req, res)=> {
 //     res.render('success')
 // })
-app.get('/sitemap', (req, res) => {
-    res.sendFile(__dirname + '/sitemap.xml')
-});
-app.get('/cert/certificate', (req, res) => {
-    res.sendFile(__dirname +'/cert/certificate.crt')
-});
-app.get('/cert/privatekey', (req, res) => {
-    res.sendFile(__dirname +'/cert/private.key')
-})
 //=======post routes========//
 app.post('/register',ensureAuthenticated, (req, res) => {
     if (req.user.email == 'kaushikappani@gmail.com') {
