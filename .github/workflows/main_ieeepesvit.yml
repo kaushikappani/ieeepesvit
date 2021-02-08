@@ -7,10 +7,11 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@master
@@ -31,5 +32,5 @@ jobs:
       with:
         app-name: 'ieeepesvit'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9a37a61d91764f78b77886b4fbae1a65 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_0cf0f0c62fad45bd83186d89a8506628 }}
         package: .
