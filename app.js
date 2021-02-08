@@ -157,13 +157,10 @@ app.get('/sitemap', (req, res) => {
     res.sendFile(__dirname + '/sitemap.xml')
 });
 app.get('/cert/certificate', (req, res) => {
-    res.send('certificate.crt')
-});
-app.get('/cert/certificate', (req, res) => {
-    res.send('certificate.crt')
+    res.sendFile(__dirname +'/cert/certificate.crt')
 });
 app.get('/cert/privatekey', (req, res) => {
-    res.send('private.key')
+    res.sendFile(__dirname +'/cert/private.key')
 })
 //=======post routes========//
 app.post('/register',ensureAuthenticated, (req, res) => {
