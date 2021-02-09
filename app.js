@@ -9,6 +9,7 @@ const session = require('express-session');
 const bcrypt = require('bcrypt')
 const { ensureAuthenticated, forwardAuthenticated } = require('./config/auth');
 const User = require('./models/User');
+var cors_proxy = require('cors-anywhere');
 
 require('./config/passport')(passport);
 const {
@@ -80,7 +81,7 @@ const Registration = mongoose.model('Registration', registrationSchema);
 
 app.get('/', (req, res) => {
     Blog.find({}).sort({'_id':-1}).then((blogs) => {
-        res.json(blogs)
+        res.status(200).json(blogs)
     })
 });
 
@@ -231,6 +232,12 @@ app.post('/logout', (req, res) => {
     res.redirect('/');
 });
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`server running in port ${port}`);
-})
+var host = process.env.HOST || '0.0.0.0';
+
+cors_proxy.createServer({
+    originWhitelist: [], // Allow all origins
+    requireHeader: ['origin', 'x-requested-with'],
+    removeHeaders: ['cookie', 'cookie2']
+}).listen(port, host, function() {
+    console.log('Running CORS Anywhere on ' + host + ':' + port);
+});
