@@ -9,7 +9,6 @@ const session = require('express-session');
 const bcrypt = require('bcrypt')
 const { ensureAuthenticated, forwardAuthenticated } = require('./config/auth');
 const User = require('./models/User');
-var cors_proxy = require('cors-anywhere');
 
 require('./config/passport')(passport);
 const {
@@ -232,12 +231,6 @@ app.post('/logout', (req, res) => {
     res.redirect('/');
 });
 const port = process.env.PORT || 3000;
-var host = process.env.HOST || '0.0.0.0';
-
-cors_proxy.createServer({
-    originWhitelist: [], // Allow all origins
-    requireHeader: ['origin', 'x-requested-with'],
-    removeHeaders: ['cookie', 'cookie2']
-}).listen(port, host, function() {
-    console.log('Running CORS Anywhere on ' + host + ':' + port);
-});
+app.listen(port, () => {
+    console.log(`server running in port ${port}`);
+})
