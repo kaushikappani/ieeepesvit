@@ -85,7 +85,9 @@ const Registration = mongoose.model('Registration', registrationSchema);
 
 app.get('/', (req, res) => {
     Blog.find({}).sort({'_id':-1}).then((blogs) => {
-        res.status(200).json(blogs)
+        res.render('home', {
+            posts:blogs
+        })
     })
 });
 
@@ -190,7 +192,7 @@ app.post('/contact', (req, res) => {
         date: new Date()
     });
     message.save().then(() => {
-        res.status(200).json()
+        res.redirect('/')
     }).catch((err) => {
         res.redirect('/')
     })
