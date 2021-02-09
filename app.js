@@ -190,7 +190,7 @@ app.post('/contact', (req, res) => {
         date: new Date()
     });
     message.save().then(() => {
-        res.redirect('/')
+        res.status(200).json()
     }).catch((err) => {
         res.redirect('/')
     })
