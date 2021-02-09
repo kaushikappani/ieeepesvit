@@ -80,7 +80,7 @@ const Registration = mongoose.model('Registration', registrationSchema);
 
 app.get('/', (req, res) => {
     Blog.find({}).sort({'_id':-1}).then((blogs) => {
-        res.send(blogs)
+        res.json(blogs)
     })
 });
 
