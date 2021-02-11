@@ -151,6 +151,9 @@ app.get('/blog/delete/:id', ensureAuthenticated,(req, res) => {
 app.get('/register', (req, res) => {
     res.render('register')
 });
+app.get('/sitemap', (req, res) => {
+    res.sendFile(__dirname+'/sitemap.xml')
+})
 // app.get('/success',(req, res)=> {
 //     res.render('success')
 // })
