@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-   	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>IEEE PES VIT</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<meta name="title" content="IEEE PES VIT">
-	 <meta name="robots" content="index,dofollow">
+	<meta name="robots" content="index,dofollow">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="icon" type="image/png" href="images/09PES-1.ico"/>
+	<link rel="icon" type="image/png" href="images/09PES-1.ico" />
 	<link rel="manifest" href="/manifest.json">
 	<meta name="theme-color" content="#708090">
-    	<meta property="og:type" content="website" />
-    <meta property="og:title" content="IEEE - POWER ENERGY SOCIETY" />
-    <meta property="og:url" content="https://www.ieeepesvit.ml" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="IEEE - POWER ENERGY SOCIETY" />
+	<meta property="og:url" content="https://www.ieeepesvit.ml" />
 	<meta name="description" content="We are a student chapter in VIT.
 Our vision is to educate the society about the impact of engineering on sustainability and energy sources.">
-	<meta name="keywords" content="ieeepesvit,Institute of Electrical and Electronics Engineers,engineers,electronics,ieee,pes,power and energy society,power and energy ,vit,vellore institute of technology,vellore,blogs,club,chapters,clubs and chapters,IEEE-PES,power,energy">
+	<meta name="keywords"
+		content="ieeepesvit,Institute of Electrical and Electronics Engineers,engineers,electronics,ieee,pes,power and energy society,power and energy ,vit,vellore institute of technology,vellore,blogs,club,chapters,clubs and chapters,IEEE-PES,power,energy">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 	<meta name="google-site-verification" content="Drf8W5Mz0mvrgzfDKZyA0BzN8ovIwu13FUGR-VAKI3k" />
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188673615-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188673615-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
 
-  gtag('config', 'UA-188673615-2');
-</script>
+		gtag('config', 'UA-188673615-2');
+	</script>
 
 	<style>
-		.blogs img{
+		.blogs img {
 			height: 0;
 			width: 0;
 		}
 	</style>
 </head>
+
 <body>
 	<nav class="navbar bg-light navbar-light navbar-expand-lg">
 		<div class="container">
@@ -47,7 +50,7 @@ Our vision is to educate the society about the impact of engineering on sustaina
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul style="font-family: auto;" class="navbar-nav ml-auto">
 					<li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="/blogs" class="nav-link active">Blog</a></li>
+					<li class="nav-item"><a href="/blogs" class="nav-link active">Blog</a></li>
 					<li class="nav-item"><a href="/about" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
 					<li class="nav-item"><a href="/events" class="nav-link">Chapter Events</a></li>
@@ -56,26 +59,35 @@ Our vision is to educate the society about the impact of engineering on sustaina
 		</div>
 	</nav>
 
-	<div class="container blogs" style="padding: 1rem;" >
+	<div class="container blogs" style="padding: 1rem;">
 		<h1 style="margin-top: 15px; text-align:center ">Blog</h1>
 		<div class="row my-5" style="margin: 0 !important">
-    <%  posts.forEach(function(post){  %>
-        	<div class="col-lg-12" style="margin-top: 0.5rem !important;">
-				
-			<div style="overflow: hidden;"> <em><b><h4 class="my-4">“<%=post.title%>”</h4></b></em> <p style="font-size: 16px !important"><%-post.text.substring(0,500)%></p></div><br>
-		<a href="/blog/<%=post.link%>">Continue Reading <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-</svg></a><br>
-		<%=post.date.substring(0,15)%>
-		<hr class="row">
-      </div>
-     <% }) %>
+			<%  posts.forEach(function(post,index) {  %>
+			<div class="col-lg-12" style="margin-top: 0.5rem !important;">
+
+				<div style="overflow: hidden;"> <em><b>
+							<h4 class="my-4">“<%=post.title%>”</h4>
+						</b></em>
+					<p style="font-size: 16px !important"><%-post.text.substring(0,500)%></p>
+				</div><br>
+				<a href="/blog/<%=post.link%>">Continue Reading <svg xmlns="http://www.w3.org/2000/svg" width="16"
+						height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+						<path fill-rule="evenodd"
+							d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+					</svg></a><br>
+				<%=post.date.substring(0,15)%>
+				<% if(index != posts.length - 1){ %>
+				<hr class="row">
+				<% } %>
+
+			</div>
+			<% }) %>
 
 		</div>
 	</div>
 
 
-	
+
 	<%-include("partials/footer")-%>
 
 	<!-- jQuery -->
@@ -87,5 +99,5 @@ Our vision is to educate the society about the impact of engineering on sustaina
 	<!-- Font Awesome -->
 	<script src="js/all.min.js"></script>
 </body>
-</html>
 
+</html>
