@@ -80,7 +80,7 @@ const Registration = mongoose.model('Registration', registrationSchema);
 //========get routes =====//
 
 app.get('/', (req, res) => {
-    Blog.find({}).sort({'_id':-1}).then((blogs) => {
+    Blog.find({}).limit(3).sort({'_id':-1}).then((blogs) => {
         res.render('home', {
             posts:blogs
         })
@@ -106,6 +106,14 @@ app.get('/blog/:link', (req, res) => {
         } else {
             res.redirect('/')
         }
+    })
+});
+
+app.get('/blogs', (req, res) => {
+    Blog.find({}).sort({'_id':-1}).then((blogs) => {
+        res.render('blogs', {
+            posts:blogs
+        })
     })
 });
 
