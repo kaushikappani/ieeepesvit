@@ -149,16 +149,18 @@ app.get('/admin', ensureAuthenticated, (req, res) => {
     }).then((messages) => {
         Blog.find({}).then((blogs) => {
             User.find({}).then((users) => {
-                res.render('admin', {
-                    messages,
-                    blogs,
-                    users,
-                    user: req.user
-                })
-            })
+                Subscribe.find({}).then((subscribers)=> {
+                    res.render('admin', {
+                        messages,
+                        blogs,
+                        users,
+                        subscribers,
+                        user: req.user
+                    })
+              })
         })
     })
-
+})
 });
 app.get('/login', forwardAuthenticated, (req, res) => {
     res.render('login')
@@ -173,6 +175,13 @@ app.get('/message/delete/:id', ensureAuthenticated, (req, res) => {
 });
 app.get('/blog/delete/:id', ensureAuthenticated, (req, res) => {
     Blog.findByIdAndDelete({
+        _id: req.params.id
+    }).then(
+        res.redirect('/admin')
+    )
+});
+app.get('/subscriber/delete/:id', ensureAuthenticated, (req, res) => {
+    Subscribe.findByIdAndDelete({
         _id: req.params.id
     }).then(
         res.redirect('/admin')
@@ -259,10 +268,8 @@ app.post('/subscribe', (req, res) => {
         email: req.body.email
     }, (err, post) => {
             if (post != null) {
-                console.log('found')
                 res.redirect('/')
             } else {
-                console.log(' not found')
                  subscriber.save().then(() => {
                     res.redirect('/')
                 })

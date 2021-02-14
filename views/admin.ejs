@@ -98,7 +98,26 @@
             </div>
         </div>
 	</div>
-
+	 <div class="container main" style="padding-top:1rem;width: 100%; overflow: scroll;">
+        <div class="row">
+            <div class="col-lg-12">
+				<h2>Subscribers</h2>
+                <table class="table table-striped">
+                    <tr>
+						<th>Email</th>
+						<th>Action</th>
+						
+                    </tr>
+                   <% subscribers.forEach(function(subscriber){ %>
+                    <tr>
+						<td><%=subscriber.email%></td>
+						<td><a href="/subscriber/delete/<%=subscriber.id%>">Unsubscribe</a></td>
+                        </tr>
+                    <% }) %>
+                </table>
+            </div>
+        </div>
+	</div>
 	
 	<div class="container">
 		<h2>Blog Post</h2>
