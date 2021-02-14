@@ -14,17 +14,21 @@ a:hover {
 }
 
 /* ========home page==========*/
-.projects {
+.subscribe {
   padding: 0;
 }
 
-.projects .input {
+.subscribe .input {
   padding: 3px;
   margin-top: 30px;
 }
 
-.projects .btn {
+.subscribe .btn {
   padding: 1px
+}
+
+.subscribe .col-lg-6 {
+  margin: auto
 }
 
 /*============= TOP BAR HEADER =============*/

@@ -6,24 +6,31 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
-const bcrypt = require('bcrypt')
-const { ensureAuthenticated, forwardAuthenticated } = require('./config/auth');
+const bcrypt = require('bcrypt');
+const {check,validationResult} = require('express-validator')
+const {
+    ensureAuthenticated,
+    forwardAuthenticated
+} = require('./config/auth');
 const User = require('./models/User');
 
 require('./config/passport')(passport);
 const {
-  response
+    response
 } = require("express");
 
 
-mongoose.connect(`mongodb+srv://admin-kaushik:${process.env.DBPASSWORD}@cluster0.gpymw.mongodb.net/ieeepes?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
-mongoose.connection
-.once('open', ()=> {
-    console.log(`connected to database`)
+mongoose.connect(`mongodb+srv://admin-kaushik:${process.env.DBPASSWORD}@cluster0.gpymw.mongodb.net/ieeepes?retryWrites=true&w=majority`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
-.on('error',(err)=>{
-    console.log(`error: ${err}`)
-});
+mongoose.connection
+    .once('open', () => {
+        console.log(`connected to database`)
+    })
+    .on('error', (err) => {
+        console.log(`error: ${err}`)
+    });
 mongoose.set('useFindAndModify', false);
 
 
@@ -35,11 +42,11 @@ app
     .set("view engine", "ejs")
     .use('/blog', express.static(__dirname + '/public'));
 app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: true,
-    saveUninitialized: true
-  })
+    session({
+        secret: process.env.SECRET,
+        resave: true,
+        saveUninitialized: true
+    })
 );
 
 // Passport middleware
@@ -55,7 +62,7 @@ const blogSchema = {
     date: String,
     link: String,
     image: String,
-    views:Number
+    views: Number
 
 };
 
@@ -64,7 +71,7 @@ const messageSchema = {
     email: String,
     number: String,
     message: String,
-    date:String,
+    date: String,
 };
 const registrationSchema = {
     name: String,
@@ -73,16 +80,23 @@ const registrationSchema = {
     email: String,
 };
 
+const subscribeSchema = {
+    email: String,
+}
+
 const Blog = mongoose.model('Blog', blogSchema);
 const Message = mongoose.model('Message', messageSchema);
 const Registration = mongoose.model('Registration', registrationSchema);
+const Subscribe = mongoose.model('Subscribe', subscribeSchema);
 
 //========get routes =====//
 
 app.get('/', (req, res) => {
-    Blog.find({}).limit(3).sort({'_id':-1}).then((blogs) => {
+    Blog.find({}).limit(3).sort({
+        '_id': -1
+    }).then((blogs) => {
         res.render('home', {
-            posts:blogs
+            posts: blogs
         })
     })
 });
@@ -101,8 +115,8 @@ app.get('/blog/:link', (req, res) => {
             res.render('post', {
             title: post.title,
             content: post.text,
-            image:post.image
-        })
+                image: post.image
+            })
         } else {
             res.redirect('/')
         }
@@ -110,9 +124,11 @@ app.get('/blog/:link', (req, res) => {
 });
 
 app.get('/blogs', (req, res) => {
-    Blog.find({}).sort({'_id':-1}).then((blogs) => {
+    Blog.find({}).sort({
+        '_id': -1
+    }).then((blogs) => {
         res.render('blogs', {
-            posts:blogs
+            posts: blogs
         })
     })
 });
@@ -128,31 +144,37 @@ app.get('/events', (req, res) => {
     res.render('events')
 });
 app.get('/admin', ensureAuthenticated, (req, res) => {
-    Message.find({}).sort({'_id':-1}).then((messages) => {
+    Message.find({}).sort({
+        '_id': -1
+    }).then((messages) => {
         Blog.find({}).then((blogs) => {
             User.find({}).then((users) => {
-                 res.render('admin', {
-                messages,
-                blogs,
-                users,
-                user:req.user
-                 })
+                res.render('admin', {
+                    messages,
+                    blogs,
+                    users,
+                    user: req.user
+                })
             })
         })
     })
-    
+
 });
-app.get('/login', forwardAuthenticated,(req, res) => {
+app.get('/login', forwardAuthenticated, (req, res) => {
     res.render('login')
 })
 
-app.get('/message/delete/:id',ensureAuthenticated ,(req, res) => {
-    Message.findByIdAndDelete({ _id: req.params.id }).then(
+app.get('/message/delete/:id', ensureAuthenticated, (req, res) => {
+    Message.findByIdAndDelete({
+        _id: req.params.id
+    }).then(
         res.redirect('/admin')
     )
 });
-app.get('/blog/delete/:id', ensureAuthenticated,(req, res) => {
-    Blog.findByIdAndDelete({ _id: req.params.id }).then(
+app.get('/blog/delete/:id', ensureAuthenticated, (req, res) => {
+    Blog.findByIdAndDelete({
+        _id: req.params.id
+    }).then(
         res.redirect('/admin')
     )
 });
@@ -160,34 +182,36 @@ app.get('/register', (req, res) => {
     res.render('register')
 });
 app.get('/sitemap', (req, res) => {
-    res.sendFile(__dirname+'/sitemap.xml')
+    res.sendFile(__dirname + '/sitemap.xml')
 })
 // app.get('/success',(req, res)=> {
 //     res.render('success')
 // })
 //=======post routes========//
-app.post('/register',ensureAuthenticated, (req, res) => {
+app.post('/register', ensureAuthenticated, (req, res) => {
     if (req.user.email == 'kaushikappani@gmail.com') {
         const newUser = new User({
-        email: req.body.emailadd,
-        password:req.body.passwordadd
-    });
-    bcrypt.genSalt(12,(err,salt)=>{
-        bcrypt.hash(newUser.password,salt,(err,hash)=>{
+            email: req.body.emailadd,
+            password: req.body.passwordadd
+        });
+        bcrypt.genSalt(12, (err, salt) => {
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
 
-            if(err) return err;
-            newUser.password = hash;
-            newUser.save()
-            .then(user=>{
-                res.redirect('/admin')
-            })
-            .catch(err=>{
-                res.status(400).send(err)
+                if (err) return err;
+                newUser.password = hash;
+                newUser.save()
+                    .then(user => {
+                        res.redirect('/admin')
+                    })
+                    .catch(err => {
+                        res.status(400).send(err)
+                    })
             })
         })
-    })
     } else {
-        res.send({message:"only admin can add users"})
+        res.send({
+            message: "only admin can add users"
+        })
     }
 })
 app.post('/contact', (req, res) => {
@@ -203,7 +227,7 @@ app.post('/contact', (req, res) => {
     }).catch((err) => {
         res.redirect('/')
     })
-}) 
+})
 app.post('/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/admin',
@@ -226,6 +250,25 @@ app.post('/blogpost', ensureAuthenticated, (req, res) => {
         res.redirect('/admin')
     })
 });
+
+app.post('/subscribe', (req, res) => {
+    const subscriber = new Subscribe({
+        email: req.body.email,
+    });
+    Subscribe.findOne({
+        email: req.body.email
+    }, (err, post) => {
+            if (post != null) {
+                console.log('found')
+                res.redirect('/')
+            } else {
+                console.log(' not found')
+                 subscriber.save().then(() => {
+                    res.redirect('/')
+                })
+            }
+    })
+})
 // app.post('/eventregister', (req, res) => {
 //     const registration = new Registration({
 //         name: req.body.name,
