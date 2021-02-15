@@ -64,12 +64,12 @@
                     </tr>
                    <% messages.forEach(function(message){ %>
                     <tr>
-                        <td><%=message.date%></td>
+                        <td><%=message.date.substring(0,15)%></td>
                         <td><%=message.name %></td>
                         <td><%=message.email %></td>
                         <td><%=message.number %></td>
-						<td><%=message.message %></td>
-						<td> <a href="/message/delete/<%=message.id%>">delete</a> </td>
+						<td><%=message.message.substring(0,15)%>...</td>
+						<td> <a href="/admin/message/<%=message.id%>">Open</a> </td>
                         </tr>
                     <% }) %>
                 </table>

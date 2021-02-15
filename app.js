@@ -40,7 +40,8 @@ app
     }))
     .use(express.static(__dirname + '/public'))
     .set("view engine", "ejs")
-    .use('/blog', express.static(__dirname + '/public'));
+    .use('/blog', express.static(__dirname + '/public'))
+    .use('/admin/message', express.static(__dirname + '/public'));
 app.use(
     session({
         secret: process.env.SECRET,
@@ -162,6 +163,20 @@ app.get('/admin', ensureAuthenticated, (req, res) => {
     })
 })
 });
+app.get('/admin/message/:id',ensureAuthenticated, (req, res) => {
+    Message.findById({ _id: req.params.id }, (err, data) => {
+        if (!err) {
+            res.render('message', {
+                id:data.id,
+                date: data.date,
+                name: data.name,
+                email: data.email,
+                number: data.number,
+                message:data.message
+            })
+        }
+    })
+})
 app.get('/login', forwardAuthenticated, (req, res) => {
     res.render('login')
 })
