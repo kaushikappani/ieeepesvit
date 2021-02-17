@@ -174,6 +174,8 @@ app.get('/admin/message/:id',ensureAuthenticated, (req, res) => {
                 number: data.number,
                 message:data.message
             })
+        } else {
+            res.redirect('/admin')
         }
     })
 })
