@@ -91,7 +91,9 @@
                     <tr>
 						<td><a href="/blog/<%=blog.link%>"><%=blog.title%></a></td>
 						<td><%=blog.views%></td>
-						<td> <a href="/blog/delete/<%=blog.id%>">delete</a> </td>
+						<td>  <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#del<%=blog.id%>">
+    delete
+  </button> </td>
                         </tr>
                     <% }) %>
                 </table>
@@ -134,11 +136,36 @@
 	</div>
 
 	<!-- Start Fixed Background IMG -->
-
-
+	<% blogs.forEach(function(blog){ %>
+		 <div class="modal" id="del<%=blog.id%>">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Confirm Delete</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Want to delete <%=blog.title%> permanently
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="/blog/delete/<%=blog.id%>"><button class="btn btn-danger">Delete</button></a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+<% }) %>
 	
 	<%-include("partials/footer")-%>
-
 
 
 	<!-- Script Source Files -->
