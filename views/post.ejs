@@ -1,39 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-   	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>IEEE PES VIT</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="icon" type="image/png" href="images/09PES-1.ico"/>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
-		<meta name="title" content="IEEE POWER ENERGY SOCIETY VIT">
+	<link rel="icon" type="image/png" href="images/09PES-1.ico" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
+	<meta name="title" content="IEEE POWER ENERGY SOCIETY VIT">
 
-	 <meta name="robots" content="index,dofollow">
+	<meta name="robots" content="index,dofollow">
 
-<meta name="description" content="We are a student chapter in VIT.
+	<meta name="description" content="We are a student chapter in VIT.
 Our vision is to educate the society about the impact of engineering on sustainability and energy sources.">
-	<meta name="keywords" content="ieeepesvit,Institute of Electrical and Electronics Engineers,engineers,electronics,ieee,pes,power and energy society,power and energy ,vit,vellore institute of technology,vellore,blogs,club,chapters,clubs and chapters,IEEE-PES,power,energy">
+	<meta name="keywords"
+		content="ieeepesvit,Institute of Electrical and Electronics Engineers,engineers,electronics,ieee,pes,power and energy society,power and energy ,vit,vellore institute of technology,vellore,blogs,club,chapters,clubs and chapters,IEEE-PES,power,energy">
 
-    <style>
-        .main img{
-            display: block; margin-left: auto; margin-right: auto;width: 100%; max-width: 600px;padding: 1rem;
-        }
+	<style>
+		.main img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 100%;
+			max-width: 600px;
+			padding: 1rem;
+		}
+
+		.progress-container {
+			z-index: 1000;
+			width: 100%;
+			height: 8px;
+			background: #ccc;
+			position: fixed;
+		}
+
+		.progress-bar {
+			height: 8px;
+			background: #28a745;
+			width: 0%;
+		}
 	</style>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188673615-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188673615-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-188673615-2');
-</script>
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-188673615-2');
+	</script>
 
 </head>
-<body onload="preloader()">
+
+<body>
+	<div class="progress-container">
+		<div class="progress-bar" id="myBar"></div>
+	</div>
 	<nav class="navbar bg-light navbar-light navbar-expand-lg">
 		<div class="container">
 			<a class="navbar-brand" href="/"><img src="img/IEEE_PES_LOGO-01.svg" alt="logo" title="logo"></a>
@@ -51,22 +79,24 @@ Our vision is to educate the society about the impact of engineering on sustaina
 			</div>
 		</div>
 	</nav>
-    <div class="container main" style="padding-top:1rem">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 style="text-align: center;"><%=title%></h1>
-                <img src="<%=image%>" alt="">
-            </div>
-            <div class="col-lg-12">
-                <h5><%-content%></h5>
-            </div>
-        </div>
-    </div>
+
+
+	<div class="container main" style="padding-top:1rem">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 style="text-align: center;"><%=title%></h1>
+				<img src="<%=image%>" alt="">
+			</div>
+			<div class="col-lg-12">
+				<h5><%-content%></h5>
+			</div>
+		</div>
+	</div>
 
 	<!-- Start Fixed Background IMG -->
 
 
-	
+
 	<%-include("partials/footer")-%>
 
 
@@ -83,14 +113,17 @@ Our vision is to educate the society about the impact of engineering on sustaina
 	<script src="js/all.min.js"></script>
 	<!--preloader-->
 	<script type="text/javascript">
-		var loader = document.getElementById("loading");
-		function preloader(){
-			loader.style.display='none';
+		window.onscroll = function () {
+			myFunction()
+		};
+
+		function myFunction() {
+			var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+			var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+			var scrolled = (winScroll / height) * 100;
+			document.getElementById("myBar").style.width = scrolled + "%";
 		}
 	</script>
 </body>
+
 </html>
-
-
-
-    
