@@ -18,7 +18,7 @@ Our vision is to educate the society about the impact of engineering on sustaina
         content="ieeepesvit,Institute of Electrical and Electronics Engineers,engineers,electronics,ieee,pes,power and energy society,power and energy ,vit,vellore institute of technology,vellore,blogs,club,chapters,clubs and chapters,IEEE-PES,power,energy">
 
     <style>
-        .main{
+        .main {
             margin-top: 2rem;
             border-style: groove;
             border-width: 5px;
@@ -92,12 +92,34 @@ Our vision is to educate the society about the impact of engineering on sustaina
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <a style="float: right;" href="/message/delete/<%=id%>"><button class="btn btn-danger">Delete</button></a>
+                <button style="float: right;" type="button" class="btn btn-danger" data-toggle="modal"
+                    data-target="#exampleModal">
+                    Delete
+                </button>
             </div>
         </div>
     </div>
 
-
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Want to delete <%=name%> message permanently
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="/message/delete/<%=id%>"><button class="btn btn-danger">Delete</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Start Fixed Background IMG -->
 
 
@@ -118,6 +140,9 @@ Our vision is to educate the society about the impact of engineering on sustaina
     <script src="js/all.min.js"></script>
     <!--preloader-->
     <script type="text/javascript">
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
     </script>
 </body>
 
