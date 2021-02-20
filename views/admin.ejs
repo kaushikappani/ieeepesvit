@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-   	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>IEEE PES VIT ADMIN</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="icon" type="image/png" href="images/09PES-1.ico"/>
+	<link rel="icon" type="image/png" href="images/09PES-1.ico" />
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188673615-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188673615-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-188673615-2');
-</script>
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
 
-</script>
-    <style>
-        .main img{
-            display: block; margin-left: auto; margin-right: auto;width: 100%; max-width: 600px;padding: 1rem;
-        }
-    </style>
+		gtag('config', 'UA-188673615-2');
+	</script>
+
+	</script>
+	<style>
+		.main img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 100%;
+			max-width: 600px;
+			padding: 1rem;
+		}
+	</style>
 </head>
+
 <body>
 	<nav class="navbar bg-light navbar-light navbar-expand-lg">
 		<div class="container">
@@ -40,9 +50,11 @@
 					<li class="nav-item"><a href="/about" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
 					<li class="nav-item"><a href="/events" class="nav-link">Chapter Events</a></li>
-					<li class="nav-link"><form action="/logout" method="post">
-	<button class="btn btn-danger" type="submit">Logout</button>
-	</form></li>
+					<li class="nav-link">
+						<form action="/logout" method="post">
+							<button class="btn btn-danger" type="submit">Logout</button>
+						</form>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -50,65 +62,67 @@
 	<div class="container main" style="padding-top:1rem;">
 		<p style="width: 100%;">Hello <%=user.email%></p>
 		<h2>Messages</h2>
-        <div class="row" style="padding-top:1rem;width: 100%; overflow: scroll;">
-            <div class="col-lg-12">
-				
-                <table class="table table-striped">
-                    <tr>
-                        <th>Date</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
+		<div class="row" style="padding-top:1rem;width: 100%; overflow: scroll;">
+			<div class="col-lg-12">
+
+				<table class="table table-striped">
+					<tr>
+						<th>Date</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Phone</th>
 						<th>Message</th>
 						<th>Action</th>
-                    </tr>
-                   <% messages.forEach(function(message){ %>
-                    <tr>
-                        <td><%=message.date.substring(0,15)%></td>
-                        <td><%=message.name %></td>
-                        <td><%=message.email %></td>
-                        <td><%=message.number %></td>
+					</tr>
+					<% messages.forEach(function(message){ %>
+					<tr>
+						<td><%=message.date.substring(0,15)%></td>
+						<td><%=message.name %></td>
+						<td><%=message.email %></td>
+						<td><%=message.number %></td>
 						<td><%=message.message.substring(0,15)%>...</td>
 						<td> <a href="/admin/message/<%=message.id%>">Open</a> </td>
-                        </tr>
-                    <% }) %>
-                </table>
-            </div>
-        </div>
+					</tr>
+					<% }) %>
+				</table>
+			</div>
+		</div>
 	</div>
-	 <div class="container main" style="padding-top:1rem;width: 100%; overflow: scroll;">
-        <div class="row">
-            <div class="col-lg-12">
+	<div class="container main" style="padding-top:1rem;width: 100%; overflow: scroll;">
+		<div class="row">
+			<div class="col-lg-12">
 				<h2>Blogs</h2>
-                <table class="table table-striped">
-                    <tr>
+				<table class="table table-striped">
+					<tr>
 						<th>Title</th>
 						<th>Views</th>
 						<th>Action</th>
-						
-                    </tr>
-                   <% blogs.forEach(function(blog){ %>
-                    <tr>
+
+					</tr>
+					<% blogs.forEach(function(blog){ %>
+					<tr>
 						<td><a href="/blog/<%=blog.link%>"><%=blog.title%></a></td>
 						<td><%=blog.views%></td>
-						<td>  <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#del<%=blog.id%>">
-    delete
-  </button> </td>
-                        </tr>
-                    <% }) %>
-                </table>
-            </div>
-        </div>
+						<td> <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+								data-target="#del<%=blog.id%>">
+								delete
+							</button> </td>
+					</tr>
+					<% }) %>
+				</table>
+			</div>
+		</div>
 	</div>
 	<div class="container">
 		<h2>Blog Post</h2>
 		<div class="row">
 			<div class="col-lg-12">
 				<form action="/blogpost" method="POST">
-				<input class="form-control" type="text" name="title" placeholder="title" required>
-				<input class="form-control" type="text" name="image" placeholder="image" required>
-				<textarea class="form-control" placeholder="content write in HTML" name="content" id="" cols="30" rows="10" required></textarea>
-				<button type="submit" class="btn btn-primary">Submit</button>
+					<input class="form-control" type="text" name="title" placeholder="title" required>
+					<input class="form-control" type="text" name="image" placeholder="image" required>
+					<textarea class="form-control" placeholder="content write in HTML" name="content" id="" cols="30"
+						rows="10" required></textarea>
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
 			</div>
 		</div>
@@ -119,7 +133,7 @@
 			<div class="col-lg-12">
 				<ol>
 					<% users.forEach(function(user){ %>
-						<li><%=user.email%></li>
+					<li><%=user.email%></li>
 					<% }) %>
 				</ol>
 				<button onclick="addUser()" class="btn btn-primary">Add User</button>
@@ -127,8 +141,10 @@
 			<div id="addUserdiv" class="col-lg-12" style="display: none;">
 				<h2>Add User</h2>
 				<form action="/register" method="POST" autocomplete="off">
-					<input class="form-control" type="email" name="emailadd" placeholder="email" required autocomplete="off" autocomplete="false" value=''>
-					<input class="form-control" type="password" name="passwordadd" placeholder="password" required autocomplete="off" autocomplete="false"  autocomplete="new-password" value="">
+					<input class="form-control" type="email" name="emailadd" placeholder="email" required
+						autocomplete="off" autocomplete="false" value=''>
+					<input class="form-control" type="password" name="passwordadd" placeholder="password" required
+						autocomplete="off" autocomplete="false" autocomplete="new-password" value="">
 					<button class="btn btn-primary" type="submit">ADD</button>
 				</form>
 			</div>
@@ -137,34 +153,34 @@
 
 	<!-- Start Fixed Background IMG -->
 	<% blogs.forEach(function(blog){ %>
-		 <div class="modal fade" id="del<%=blog.id%>">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Confirm Delete</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          Want to delete <%=blog.title%> permanently
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="/blog/delete/<%=blog.id%>"><button class="btn btn-danger">Delete</button></a>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-  
-</div>
-<% }) %>
-	
+	<div class="modal fade" id="del<%=blog.id%>">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Confirm Delete</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					Want to delete <%=blog.title%> permanently
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<a href="/blog/delete/<%=blog.id%>"><button class="btn btn-danger">Delete</button></a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	</div>
+	<% }) %>
+
 	<%-include("partials/footer")-%>
 
 
@@ -180,14 +196,11 @@
 	<script src="js/all.min.js"></script>
 	<!--preloader-->
 	<script>
-		const addUser = ()=>{
+		const addUser = () => {
 			console.log('clk')
 			document.getElementById('addUserdiv').style.display = 'block'
 		}
 	</script>
 </body>
+
 </html>
-
-
-
-    
