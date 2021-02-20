@@ -4,25 +4,25 @@
 
    <url>
 
-      <loc>https://www.ieeepesvit.ml</loc>
+      <loc>https://www.ieeepesvit.tech</loc>
 
 
-      <changefreq>hourly</changefreq>
+      <changefreq>daily</changefreq>
 
 
    </url>
 
    <url>
 
-      <loc>https://www.ieeepesvit.ml/about</loc>
+      <loc>https://www.ieeepesvit.tech/about</loc>
 
-      <changefreq>hourly</changefreq>
+      <changefreq>daily</changefreq>
 
    </url>
 
    <url>
 
-      <loc>https://www.ieeepesvit.ml/contact</loc>
+      <loc>https://www.ieeepesvit.tech/contact</loc>
 
 
       <changefreq>daily</changefreq>
@@ -30,7 +30,15 @@
    </url>
      <url>
 
-      <loc>https://www.ieeepesvit.ml/events</loc>
+      <loc>https://www.ieeepesvit.tech/events</loc>
+
+
+      <changefreq>daily</changefreq>
+
+   </url>
+   <url>
+
+      <loc>https://www.ieeepesvit.tech/blogs</loc>
 
 
       <changefreq>daily</changefreq>

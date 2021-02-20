@@ -65,7 +65,7 @@
 		<div class="row" style="padding-top:1rem;width: 100%; overflow: scroll;">
 			<div class="col-lg-12">
 
-				<table class="table table-striped">
+				<table class="table table-striped" id="messages">
 					<tr>
 						<th>Date</th>
 						<th>Name</th>
@@ -87,7 +87,10 @@
 				</table>
 			</div>
 		</div>
+		<iframe id="txtArea1" style="display:none"></iframe>
+		<button class="btn btn-success" id="btnExport" onclick="fnExcelReport();">Export</button>
 	</div>
+
 	<div class="container main" style="padding-top:1rem;width: 100%; overflow: scroll;">
 		<div class="row">
 			<div class="col-lg-12">
@@ -197,8 +200,36 @@
 	<!--preloader-->
 	<script>
 		const addUser = () => {
-			console.log('clk')
 			document.getElementById('addUserdiv').style.display = 'block'
+		}
+
+		function fnExcelReport() {
+			var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+			var textRange;
+			var j = 0;
+			tab = document.getElementById('messages'); // id of table
+
+			for (j = 0; j < tab.rows.length; j++) {
+				tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+				//tab_text=tab_text+"</tr>";
+			}
+
+			tab_text = tab_text + "</table>";
+
+			var ua = window.navigator.userAgent;
+			var msie = ua.indexOf("MSIE ");
+
+			if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer
+			{
+				txtArea1.document.open("txt/html", "replace");
+				txtArea1.document.write(tab_text);
+				txtArea1.document.close();
+				txtArea1.focus();
+				sa = txtArea1.document.execCommand("SaveAs", true, "IEEEPES.xls");
+			} else //other browser not tested on IE 11
+				sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+			return (sa);
 		}
 	</script>
 </body>
