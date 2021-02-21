@@ -8,7 +8,10 @@ const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser')
 const bcrypt = require('bcrypt');
-const {check,validationResult} = require('express-validator')
+const {
+    check,
+    validationResult
+} = require('express-validator')
 const {
     ensureAuthenticated,
     forwardAuthenticated
@@ -22,7 +25,11 @@ const {
 
 //for flash messages
 app.use(cookieParser('secret'))
-app.use(session({ cookie: { maxAge: null } }))
+app.use(session({
+    cookie: {
+        maxAge: null
+    }
+}))
 
 app.use((req, res, next) => {
     res.locals.message = req.session.message
@@ -113,7 +120,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/blog/:link', (req, res) => {
-    Blog.findOne({ link: req.params.link }, (err, post) => {
+    Blog.findOne({
+        link: req.params.link
+    }, (err, post) => {
         if (err) {
             res.redirect('/')
         }
@@ -124,8 +133,8 @@ app.get('/blog/:link', (req, res) => {
                 if(err) res.redirect('/')
             })
             res.render('post', {
-            title: post.title,
-            content: post.text,
+                title: post.title,
+                content: post.text,
                 image: post.image
             })
         } else {
@@ -160,7 +169,7 @@ app.get('/admin', ensureAuthenticated, (req, res) => {
     }).then((messages) => {
         Blog.find({}).then((blogs) => {
             User.find({}).then((users) => {
-                Subscribe.find({}).then((subscribers)=> {
+                Subscribe.find({}).then((subscribers) => {
                     res.render('admin', {
                         messages,
                         blogs,
@@ -168,21 +177,23 @@ app.get('/admin', ensureAuthenticated, (req, res) => {
                         subscribers,
                         user: req.user
                     })
-              })
+                })
+            })
         })
     })
-})
 });
-app.get('/admin/message/:id',ensureAuthenticated, (req, res) => {
-    Message.findById({ _id: req.params.id }, (err, data) => {
+app.get('/admin/message/:id', ensureAuthenticated, (req, res) => {
+    Message.findById({
+        _id: req.params.id
+    }, (err, data) => {
         if (!err) {
             res.render('message', {
-                id:data.id,
+                id: data.id,
                 date: data.date,
                 name: data.name,
                 email: data.email,
                 number: data.number,
-                message:data.message
+                message: data.message
             })
         } else {
             res.redirect('/admin')
@@ -220,9 +231,6 @@ app.get('/register', (req, res) => {
 app.get('/sitemap', (req, res) => {
     res.sendFile(__dirname + '/sitemap.xml')
 })
-// app.get('/success',(req, res)=> {
-//     res.render('success')
-// })
 //=======post routes========//
 app.post('/register', ensureAuthenticated, (req, res) => {
     if (req.user.email == 'kaushikappani@gmail.com') {
@@ -262,14 +270,14 @@ app.post('/contact', (req, res) => {
         req.session.message = {
             message: "Your message has reached us we will contact you soon",
             role: "alert-success",
-            
+
         }
         res.redirect('/contact')
     }).catch((err) => {
         req.session.message = {
             message: "Error Please try again",
             role: "alert-warning",
-            
+
         }
         res.redirect('/contact')
     })
@@ -302,28 +310,32 @@ app.post('/subscribe', (req, res) => {
         req.session.message = {
             message: "Email is required field",
             role: "alert-warning",
-            
+
         }
         res.redirect('/')
     } else {
         const subscriber = new Subscribe({
-        email: req.body.email,
-    });
-    Subscribe.findOne({
-        email: req.body.email
-    }, (err, post) => {
+            email: req.body.email,
+        });
+        Subscribe.findOne({
+            email: req.body.email
+        }, (err, post) => {
             if (post != null) {
+                req.session.message = {
+                    message: "You have registered previously",
+                    role: "alert-warning",
+                }
                 res.redirect('/')
             } else {
-                 subscriber.save().then(() => {
+                subscriber.save().then(() => {
                     req.session.message = {
-                    message: "Registered successfully",
-                    role: "alert-success",
-        }
-        res.redirect('/')
+                        message: "Registered successfully",
+                        role: "alert-success",
+                    }
+                    res.redirect('/')
                 })
             }
-    })
+        })
     }
 })
 // app.post('/eventregister', (req, res) => {
