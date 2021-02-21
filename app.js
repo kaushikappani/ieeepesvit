@@ -24,7 +24,7 @@ const {
 } = require("express");
 
 //for flash messages
-app.use(cookieParser('secret'))
+app.use(cookieParser(process.env.SECRET))
 app.use(session({
     cookie: {
         maxAge: null
