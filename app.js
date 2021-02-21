@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
+const cookieParser = require('cookie-parser')
 const bcrypt = require('bcrypt');
 const {check,validationResult} = require('express-validator')
 const {
@@ -19,6 +20,15 @@ const {
     response
 } = require("express");
 
+//for flash messages
+app.use(cookieParser('secret'))
+app.use(session({ cookie: { maxAge: null } }))
+
+app.use((req, res, next) => {
+    res.locals.message = req.session.message
+    delete req.session.message
+    next()
+})
 
 mongoose.connect(`mongodb+srv://admin-kaushik:${process.env.DBPASSWORD}@cluster0.gpymw.mongodb.net/ieeepes?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
@@ -249,9 +259,19 @@ app.post('/contact', (req, res) => {
         date: new Date()
     });
     message.save().then(() => {
-        res.redirect('/')
+        req.session.message = {
+            message: "Your message has reached us we will contact you soon",
+            role: "alert-success",
+            
+        }
+        res.redirect('/contact')
     }).catch((err) => {
-        res.redirect('/')
+        req.session.message = {
+            message: "Error Please try again",
+            role: "alert-warning",
+            
+        }
+        res.redirect('/contact')
     })
 })
 app.post('/login', (req, res, next) => {
@@ -278,7 +298,15 @@ app.post('/blogpost', ensureAuthenticated, (req, res) => {
 });
 
 app.post('/subscribe', (req, res) => {
-    const subscriber = new Subscribe({
+    if (req.body.email == "") {
+        req.session.message = {
+            message: "Email is required field",
+            role: "alert-warning",
+            
+        }
+        res.redirect('/')
+    } else {
+        const subscriber = new Subscribe({
         email: req.body.email,
     });
     Subscribe.findOne({
@@ -288,10 +316,15 @@ app.post('/subscribe', (req, res) => {
                 res.redirect('/')
             } else {
                  subscriber.save().then(() => {
-                    res.redirect('/')
+                    req.session.message = {
+                    message: "Registered successfully",
+                    role: "alert-success",
+        }
+        res.redirect('/')
                 })
             }
     })
+    }
 })
 // app.post('/eventregister', (req, res) => {
 //     const registration = new Registration({

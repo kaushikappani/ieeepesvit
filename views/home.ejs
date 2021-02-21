@@ -105,8 +105,15 @@
   					<button class="btn btn-outline-success" type="submit" id="button-addon2">Get Updates</button>
 				</div>
 				</form>
+				<%if(message){%>
+					<div class="alert <%=message.role%>" role="alert">
+  <%=message.message%>
+</div>
+				<%}%>
 			</div>
+			
 		</div>
+		
 	</div>
 	<!-- Start Fixed Background IMG -->
 
