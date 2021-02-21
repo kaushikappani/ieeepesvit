@@ -25,11 +25,16 @@ const {
 
 //for flash messages
 app.use(cookieParser(process.env.SECRET))
-app.use(session({
-    cookie: {
+app.use(
+    session({
+        secret: process.env.SECRET,
+        resave: true,
+        saveUninitialized: true,
+        cookie: {
         maxAge: null
     }
-}))
+    })
+);
 
 app.use((req, res, next) => {
     res.locals.message = req.session.message
@@ -63,7 +68,10 @@ app.use(
     session({
         secret: process.env.SECRET,
         resave: true,
-        saveUninitialized: true
+        saveUninitialized: true,
+        cookie: {
+        maxAge: null
+    }
     })
 );
 
