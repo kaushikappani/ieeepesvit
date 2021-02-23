@@ -140,8 +140,14 @@ app.get('/blog/:link', (req, res) => {
         if (post != null) {
             number = 0;
             number = post.views + 1;
-            Blog.findOneAndUpdate({ _id: post.id }, {$set:{ "views": number }}, (err,post) => {
-                if(err) res.redirect('/')
+            Blog.findOneAndUpdate({
+                _id: post.id
+            }, {
+                $set: {
+                    "views": number
+                }
+            }, (err, post) => {
+                if (err) res.redirect('/')
             })
             res.render('post', {
                 title: post.title,
@@ -368,18 +374,30 @@ app.post('/eventregister', (req, res) => {
         number: req.body.number,
         email: req.body.email,
     });
-    registration.save().then(() => {
-        req.session.message = {
-            message: "Registered successfully You will be added to Whatsapp group before the event",
-            role: "alert-success",
+    Registration.findOne({
+        email: req.body.email
+    }, (err, post) => {
+        if (post != null) {
+            req.session.message = {
+                message: 'You have registerd with this email previously',
+                role: 'alert-warning',
+            }
+            res.redirect('/register')
+        } else {
+            registration.save().then(() => {
+                req.session.message = {
+                    message: "Registered successfully You will be added to Whatsapp group before the event",
+                    role: "alert-success",
+                }
+                res.redirect('/register')
+            }).catch((err) => {
+                req.session.message = {
+                    message: "Please try again",
+                    role: "alert-warning",
+                }
+                res.redirect('/register')
+            })
         }
-        res.redirect('/register')
-    }).catch((err) => {
-        req.session.message = {
-            message: "Please try again",
-            role: "alert-warning",
-        }
-        res.redirect('/register')
     })
 })
 
