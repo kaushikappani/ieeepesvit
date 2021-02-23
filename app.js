@@ -43,14 +43,7 @@ app.use((req, res, next) => {
     next()
 })
 
-<<<<<<< Updated upstream
-
-//mongodb connection
-
-mongoose.connect(`mongodb://localhost/website`, {
-=======
-mongoose.connect('mongodb://localhost:27017/website', {
->>>>>>> Stashed changes
+mongoose.connect(`mongodb+srv://admin-kaushik:${process.env.DBPASSWORD}@cluster0.gpymw.mongodb.net/ieeepes?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&retryWrites=true&ssl=true`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
