@@ -10,8 +10,8 @@
 	<link rel="icon" type="image/png" href="images/09PES-1.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
     <style>
-        .main img{
-            display: block; margin-left: auto; margin-right: auto;width: 100%; max-width: 600px;padding: 1rem;
+        .main{
+            margin-top: 2rem;
         }
 	</style>
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -25,7 +25,7 @@
 </script>
 
 </head>
-<body onload="preloader()">
+<body>
 	<nav class="navbar bg-light navbar-light navbar-expand-lg">
 		<div class="container">
 			<a class="navbar-brand" href="/"><img src="img/IEEE_PES_LOGO-01.svg" alt="logo" title="logo"></a>
@@ -43,12 +43,50 @@
 			</div>
 		</div>
     </nav>
-    <main class="container">
-  <div class="bg-light p-5 rounded">
-    <h1>No up comming events</h1>
-	<p>Follow us for more information</p>
+    
+  <div class="container main bg-light">
+	  <% if(message){ %>
+		<div class="alert <%=message.role%>" role="alert">
+   <%=message.message%>
+</div>
+	  <% } %>
+	  <div class="row">
+		  <div class="col-lg-12">
+			  <h1>Industrial Contribution Towards Sustainable Development</h1>
+			  <p>This world sustainable energy day 27th Febuary, dive into the world of sustainable energy practices with
+					 <b>Mr.Amit Chakraborty</b>, an environment engineer and a leading key industry expert.</p>
+		  </div>
+		  <div class="col-lg-6 form">
+			  <h2>Register Here</h2>
+			<form action="/eventregister" method="post">
+				<div class="mb-3">
+					<label for="name" class="form-label">Name*</label>
+				<input name="name" id="name" class="form-control" type="text" placeholder="" required>
+				</div>
+
+				<div class="mb-3">
+					<label for="regno" class="form-label">Registration number (only for VIT students)</label>
+				<input name="regno" id="regno" class="form-control" type="text" placeholder="" >
+				</div>
+
+				<div class="mb-3">
+					<label for="number" class="form-label">Whatsapp number*</label>
+				<input name="number" id="number" class="form-control" type="text" placeholder="" required>
+				</div>
+
+				<div class="mb-3">
+					<label for="email" class="form-label">Email address*</label>
+				<input name="email" id="email" class="form-control" type="email" placeholder="" required>
+				</div>
+				 <button style="width: 100%;" type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		  </div>
+		  <div class="col-lg-6 p-2">
+			  <img style="max-width:100%;" src="images/sustainabledevelopment.png" alt="sustainable development">
+		  </div>
+	  </div>
+	  <a class="p-3" style="text-align: center;" href="/"><h3>Explore IEEE PES-VIT</h3></a>
   </div>
-</main>
     
 
 	
@@ -68,10 +106,6 @@
 	<script src="js/all.min.js"></script>
 	<!--preloader-->
 	<script type="text/javascript">
-		var loader = document.getElementById("loading");
-		function preloader(){
-			loader.style.display='none';
-		}
 	</script>
 </body>
 </html>

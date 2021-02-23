@@ -1,3 +1,4 @@
+//loading dependinces
 require('dotenv').config()
 const express = require('express');
 const app = express();
@@ -31,16 +32,19 @@ app.use(
         resave: true,
         saveUninitialized: true,
         cookie: {
-        maxAge: null
-    }
+            maxAge: null
+        }
     })
 );
-
+//cookie middleware for messages
 app.use((req, res, next) => {
     res.locals.message = req.session.message
     delete req.session.message
     next()
 })
+
+
+//mongodb connection
 
 mongoose.connect(`mongodb+srv://admin-kaushik:${process.env.DBPASSWORD}@cluster0.gpymw.mongodb.net/ieeepes?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
@@ -54,6 +58,8 @@ mongoose.connection
         console.log(`error: ${err}`)
     });
 mongoose.set('useFindAndModify', false);
+
+//express middleware
 
 
 app
@@ -70,8 +76,8 @@ app.use(
         resave: true,
         saveUninitialized: true,
         cookie: {
-        maxAge: null
-    }
+            maxAge: null
+        }
     })
 );
 
@@ -177,12 +183,12 @@ app.get('/admin', ensureAuthenticated, (req, res) => {
     }).then((messages) => {
         Blog.find({}).then((blogs) => {
             User.find({}).then((users) => {
-                Subscribe.find({}).then((subscribers) => {
+                Registration.find({}).then((registrations) => {
                     res.render('admin', {
                         messages,
                         blogs,
                         users,
-                        subscribers,
+                        registrations,
                         user: req.user
                     })
                 })
@@ -239,7 +245,11 @@ app.get('/register', (req, res) => {
 app.get('/sitemap', (req, res) => {
     res.sendFile(__dirname + '/sitemap.xml')
 })
+
+
 //=======post routes========//
+
+
 app.post('/register', ensureAuthenticated, (req, res) => {
     if (req.user.email == 'kaushikappani@gmail.com') {
         const newUser = new User({
@@ -266,6 +276,8 @@ app.post('/register', ensureAuthenticated, (req, res) => {
         })
     }
 })
+
+
 app.post('/contact', (req, res) => {
     const message = new Message({
         name: req.body.firstName + req.body.lastName,
@@ -290,6 +302,8 @@ app.post('/contact', (req, res) => {
         res.redirect('/contact')
     })
 })
+
+
 app.post('/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/admin',
@@ -297,6 +311,8 @@ app.post('/login', (req, res, next) => {
         failureFlash: false
     })(req, res, next);
 });
+
+
 app.post('/blogpost', ensureAuthenticated, (req, res) => {
     const blog = new Blog({
         title: req.body.title.split('"').join(''),
@@ -346,24 +362,37 @@ app.post('/subscribe', (req, res) => {
         })
     }
 })
-// app.post('/eventregister', (req, res) => {
-//     const registration = new Registration({
-//         name: req.body.name,
-//         RegisterNumber: req.body.regno,
-//         number: req.body.number,
-//         email: req.body.email,
-//     });
-//     registration.save().then(() => {
-//         res.redirect('/success')
-//     }).catch((err) => {
-//         res.redirect('/register')
-//     })
-// })
+
+
+app.post('/eventregister', (req, res) => {
+    const registration = new Registration({
+        name: req.body.name,
+        RegisterNumber: req.body.regno,
+        number: req.body.number,
+        email: req.body.email,
+    });
+    registration.save().then(() => {
+        req.session.message = {
+            message: "Registered successfully You will be added to Whatsapp group before the event",
+            role: "alert-success",
+        }
+        res.redirect('/register')
+    }).catch((err) => {
+        req.session.message = {
+            message: "Please try again",
+            role: "alert-warning",
+        }
+        res.redirect('/register')
+    })
+})
+
 
 app.post('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 });
+
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`server running in port ${port}`);

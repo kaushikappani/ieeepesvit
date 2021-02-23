@@ -1,49 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-   	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>IEEE PES VIT</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<meta name="title" content="IEEE POWER ENERGY SOCIETY VIT">
-	 <meta name="robots" content="index,dofollow">
+	<meta name="robots" content="index,dofollow">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="icon" type="image/png" href="images/09PES-1.ico"/>
+	<link rel="icon" type="image/png" href="images/09PES-1.ico" />
 	<link rel="manifest" href="/manifest.json">
 	<meta name="theme-color" content="#708090">
-    <meta property="og:type" content="website" />
+	<meta property="og:type" content="website" />
 	<meta name="og:description" content="Official website for IEEE PES-VIT. We are a student chapter in VIT.
 		Our vision is to educate the society about the impact of engineering on sustainability and energy sources.">
 	<meta property="og:image" content="img/IEEE_PES_LOGO-01.sv" />
-    <meta property="og:title" content="IEEE - POWER ENERGY SOCIETY" />
-    <meta property="og:url" content="https://www.ieeepesvit.ml" />
+	<meta property="og:title" content="IEEE - POWER ENERGY SOCIETY" />
+	<meta property="og:url" content="https://www.ieeepesvit.ml" />
 	<meta name="description" content="We are a student chapter in VIT.
 		Our vision is to educate the society about the impact of engineering on sustainability and energy sources.">
-	<meta name="keywords" content="ieeepesvit,ieee pes ,ieee pes vit,Institute of Electrical and Electronics Engineers,engineers,electronics,ieee,pes,power and energy society,power and energy ,vit,vellore institute of technology,vellore,blogs,club,chapters,clubs and chapters,IEEE-PES,power,energy">
+	<meta name="keywords"
+		content="ieeepesvit,ieee pes ,ieee pes vit,Institute of Electrical and Electronics Engineers,engineers,electronics,ieee,pes,power and energy society,power and energy ,vit,vellore institute of technology,vellore,blogs,club,chapters,clubs and chapters,IEEE-PES,power,energy">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 	<meta name="google-site-verification" content="Drf8W5Mz0mvrgzfDKZyA0BzN8ovIwu13FUGR-VAKI3k" />
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188673615-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188673615-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-188673615-2');
-</script>
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-188673615-2');
+	</script>
 
 	<style>
-		.blogs img{
+		.blogs img {
 			height: 0;
 			width: 0;
 		}
 	</style>
 </head>
+
 <body>
 	<nav class="navbar bg-light navbar-light navbar-expand-lg fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="/"><img src="img/IEEE_PES_LOGO-01.svg" alt="IEEE PES VIT LOGO" title="logo"></a>
+			<a class="navbar-brand" href="/"><img src="img/IEEE_PES_LOGO-01.svg" alt="IEEE PES VIT LOGO"
+					title="logo"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -61,7 +68,8 @@
 	<div style="margin-top:5rem" id="carousel" class="carousel slide" data-ride="carousel" data-interval="5500">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img style="object-fit:cover" src="images\ieee-pes-power-future2x-min.jpg" alt="ieee-pes-power-future2x" class="w-100 main-image">
+				<img style="object-fit:cover" src="images\ieee-pes-power-future2x-min.jpg" alt="ieee-pes-power-future2x"
+					class="w-100 main-image">
 				<div class="carousel-caption">
 					<div class="container">
 						<div class="row justify-content-center">
@@ -73,24 +81,55 @@
 		</div>
 	</div>
 
-	<div class="container blogs">
-		<h1 style="margin-top: 15px;font-size: x-large;">Latest from the Blog</h1>
-		<div class="row my-5" style="margin: 0 !important">
-    <%  posts.forEach(function(post){  %>
-        	<div class="col-md-4 my-4" style="margin-top: 0.5rem !important;">
-				
-			<div style="height: 295px; overflow: hidden;"> <h4 class="my-4">“<%=post.title%>”</h4><p style="font-size: 16px !important"><%-post.text.substring(0,500)%></p></div><br>
-		<a href="/blog/<%=post.link%>">Continue Reading <img src="images\arrow.svg" alt="navigate"></a><br>
-		<%=post.date.substring(0,15)%>
-		
-      </div>
-      
-     <% }) %>
+	<div class="container" style="padding-top:2rem">
+		<h1 style="font-size: x-large;">Up coming Events</h1>
+		<div class="row">
+			<div class="col-lg-8 col-md-6">
+
+				<a href="/register">
+					<h4>Industrial Contribution Towards Sustainable Development</h4>
+				</a>
+				<p style="font-size: large;">This world sustainable energy day 27th Febuary, dive into the world of sustainable energy practices with
+					 <a target="_blank" href="https://www.linkedin.com/in/dr-amit-chakraborty-55107120/"><b>Mr.Amit Chakraborty</b></a>, an environment engineer and a leading key industry expert.
+					<a href="/register">Register Here</a></p>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<a href="/register"><img style="max-width:100%;" src="images/sustainabledevelopment.png"
+						alt="sustainable development"></a><br>
+
+			</div>
 
 		</div>
-		<a href="/blogs"><p style="text-align: center;"><button type="button" class="btn btn-outline-success">Read more blogs</button></p></a>
+		<br>
+		<hr>
+	</div>
+
+
+	<div class="container blogs">
+		<h1 style="margin-top: 15px;font-size: x-large;">Latest from the Blog</h1>
+		<div class="row" style="margin: 0 !important">
+			<%  posts.forEach(function(post){  %>
+			<div class="col-lg-4 col-md-6 my-4" style="margin-top: 0.5rem !important;">
+
+				<div style="height: 295px; overflow: hidden;">
+					<h4 class="my-4">“<%=post.title%>”</h4>
+					<p style="font-size: 16px !important"><%-post.text.substring(0,500)%></p>
+				</div><br>
+				<a href="/blog/<%=post.link%>">Continue Reading <img src="images\arrow.svg" alt="navigate"></a><br>
+				<%=post.date.substring(0,15)%>
+
+			</div>
+
+			<% }) %>
+
+		</div>
+		<a href="/blogs">
+			<p style="text-align: center;"><button type="button" class="btn btn-outline-success">Read more
+					blogs</button></p>
+		</a>
 		<br>
 	</div>
+
 
 	<div class="container subscribe">
 		<div class="row">
@@ -101,14 +140,15 @@
 			<div class="col-lg-6">
 				<form action="/subscribe" method="post">
 					<div class="input-group mb-3">
- 				 	<input name="email" type="email" class="form-control" placeholder="Email address" aria-label="email" required>
-  					<button class="btn btn-outline-success" type="submit" id="button-addon2">Get Updates</button>
-				</div>
+						<input name="email" type="email" class="form-control" placeholder="Email address"
+							aria-label="email" required>
+						<button class="btn btn-outline-success" type="submit" id="button-addon2">Get Updates</button>
+					</div>
 				</form>
 				<%if(message){%>
-					<div class="alert <%=message.role%>" role="alert">
-  <%=message.message%>
-</div>
+				<div class="alert <%=message.role%>" role="alert">
+					<%=message.message%>
+				</div>
 				<%}%>
 			</div>
 			
@@ -124,22 +164,22 @@
 
 
 
-	<!-- Script Source Files -->
+				<!-- Script Source Files -->
 
-	<!-- jQuery -->
-	<script src="js/jquery-3.5.1.min.js"></script>
-	<!-- Bootstrap 4.5 JS -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Popper JS -->
-	<script src="js/popper.min.js"></script>
-	<!-- Font Awesome -->
-	<script src="js/all.min.js"></script>
-	<!--preloader-->
-	    <script src="js/homeservice.js"></script>
+				<!-- jQuery -->
+				<script src="js/jquery-3.5.1.min.js"></script>
+				<!-- Bootstrap 4.5 JS -->
+				<script src="js/bootstrap.min.js"></script>
+				<!-- Popper JS -->
+				<script src="js/popper.min.js"></script>
+				<!-- Font Awesome -->
+				<script src="js/all.min.js"></script>
+				<!--preloader-->
+				<script src="js/homeservice.js"></script>
 
-	<script type="text/javascript">
-		
-	</script>
+				<script type="text/javascript">
+
+				</script>
 </body>
-</html>
 
+</html>

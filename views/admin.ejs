@@ -116,6 +116,30 @@
 			</div>
 		</div>
 	</div>
+	<div class="container main" style="padding-top:1rem;width: 100%; overflow: scroll;">
+		<h2>registrations <%=registrations.length%> </h2>
+		<div class="row" >
+			<div class="col-lg-12">
+
+				<table class="table table-striped" id="messages">
+					<tr>
+						<th>Name</th>
+						<th>RegNo</th>
+						<th>Email</th>
+						<th>Phone</th>
+					</tr>
+					<% registrations.forEach(function(regstration){ %>
+					<tr>
+						<td><%=regstration.name%></td>
+						<td><%=regstration.RegisterNumber%></td>
+						<td><%=regstration.number%></td>
+						<td><%=regstration.email%></td>
+					</tr>
+					<% }) %>
+				</table>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		<h2>Blog Post</h2>
 		<div class="row">
