@@ -65,6 +65,7 @@
 			</div>
 		</div>
 	</nav>
+
 	<div style="margin-top:5rem" id="carousel" class="carousel slide" data-ride="carousel" data-interval="5500">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
@@ -130,7 +131,6 @@
 		<br>
 	</div>
 
-
 	<div class="container subscribe">
 		<div class="row">
 			<div class="col-lg-6">
@@ -140,10 +140,9 @@
 			<div class="col-lg-6">
 				<form action="/subscribe" method="post">
 					<div class="input-group mb-3">
-						<input name="email" type="email" class="form-control" placeholder="Email address"
-							aria-label="email" required>
-						<button class="btn btn-outline-success" type="submit" id="button-addon2">Get Updates</button>
-					</div>
+ 				 	<input name="email" type="email" class="form-control mx-1" placeholder="Email address" aria-label="email" required>
+  					<button class="btn btn-outline-success mx-1" type="submit" id="button-addon2">Get Updates</button>
+				</div>
 				</form>
 				<%if(message){%>
 				<div class="alert <%=message.role%>" role="alert">
@@ -155,7 +154,6 @@
 		</div>
 		
 	</div>
-	<!-- Start Fixed Background IMG -->
 
 
 
