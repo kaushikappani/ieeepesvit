@@ -119,7 +119,6 @@ const Registration = mongoose.model('Registration', registrationSchema);
 const Subscribe = mongoose.model('Subscribe', subscribeSchema);
 
 //========get routes =====//
-
 app.get('/', (req, res) => {
     Blog.find({}).limit(3).sort({
         '_id': -1
@@ -250,8 +249,7 @@ app.get('/sitemap', (req, res) => {
 })
 
 
-//=======post routes========//
-
+//=======post routes============//
 
 app.post('/register', ensureAuthenticated, (req, res) => {
     if (req.user.email == 'kaushikappani@gmail.com') {
@@ -407,6 +405,11 @@ app.post('/logout', (req, res) => {
     res.redirect('/');
 });
 
+//// error page ////
+
+app.get('*', (req, res) => {
+    res.render('404')
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
