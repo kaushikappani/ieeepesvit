@@ -43,11 +43,8 @@ app.use((req, res, next) => {
     next()
 })
 
-
-//mongodb connection
-
-mongoose.connect(`mongodb://localhost/website`, {
-     useNewUrlParser: true,
+mongoose.connect(`mongodb+srv://admin-kaushik:${process.env.DBPASSWORD}@cluster0.gpymw.mongodb.net/ieeepes?retryWrites=true&w=majority`, {
+    useNewUrlParser: true,
     useUnifiedTopology: true
 })
 mongoose.connection
@@ -122,7 +119,6 @@ const Registration = mongoose.model('Registration', registrationSchema);
 const Subscribe = mongoose.model('Subscribe', subscribeSchema);
 
 //========get routes =====//
-
 app.get('/', (req, res) => {
     Blog.find({}).limit(3).sort({
         '_id': -1
@@ -143,8 +139,14 @@ app.get('/blog/:link', (req, res) => {
         if (post != null) {
             number = 0;
             number = post.views + 1;
-            Blog.findOneAndUpdate({ _id: post.id }, {$set:{ "views": number }}, (err,post) => {
-                if(err) res.redirect('/')
+            Blog.findOneAndUpdate({
+                _id: post.id
+            }, {
+                $set: {
+                    "views": number
+                }
+            }, (err, post) => {
+                if (err) res.redirect('/')
             })
             res.render('post', {
                 title: post.title,
@@ -247,8 +249,7 @@ app.get('/sitemap', (req, res) => {
 })
 
 
-//=======post routes========//
-
+//=======post routes============//
 
 app.post('/register', ensureAuthenticated, (req, res) => {
     if (req.user.email == 'kaushikappani@gmail.com') {
@@ -365,25 +366,37 @@ app.post('/subscribe', (req, res) => {
 
 
 app.post('/eventregister', (req, res) => {
-    const registration = new Registration({
-        name: req.body.name,
-        RegisterNumber: req.body.regno,
-        number: req.body.number,
-        email: req.body.email,
-    });
-    registration.save().then(() => {
-        req.session.message = {
-            message: "Registered successfully You will be added to Whatsapp group before the event",
-            role: "alert-success",
-        }
-        res.redirect('/register')
-    }).catch((err) => {
-        req.session.message = {
-            message: "Please try again",
-            role: "alert-warning",
-        }
-        res.redirect('/register')
-    })
+    // const registration = new Registration({
+    //     name: req.body.name,
+    //     RegisterNumber: req.body.regno,
+    //     number: req.body.number,
+    //     email: req.body.email,
+    // });
+    // Registration.findOne({
+    //     email: req.body.email
+    // }, (err, post) => {
+    //     if (post != null) {
+    //         req.session.message = {
+    //             message: 'You have registerd with this email previously',
+    //             role: 'alert-warning',
+    //         }
+    //         res.redirect('/register')
+    //     } else {
+    //         registration.save().then(() => {
+    //             req.session.message = {
+    //                 message: "Registered successfully You will be added to Whatsapp group before the event",
+    //                 role: "alert-success",
+    //             }
+    //             res.redirect('/register')
+    //         }).catch((err) => {
+    //             req.session.message = {
+    //                 message: "Please try again",
+    //                 role: "alert-warning",
+    //             }
+    //             res.redirect('/register')
+    //         })
+    //     }
+    // })
 })
 
 
@@ -392,6 +405,11 @@ app.post('/logout', (req, res) => {
     res.redirect('/');
 });
 
+//// error page ////
+
+app.get('*', (req, res) => {
+    res.render('404')
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
