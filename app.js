@@ -366,37 +366,37 @@ app.post('/subscribe', (req, res) => {
 
 
 app.post('/eventregister', (req, res) => {
-    const registration = new Registration({
-        name: req.body.name,
-        RegisterNumber: req.body.regno,
-        number: req.body.number,
-        email: req.body.email,
-    });
-    Registration.findOne({
-        email: req.body.email
-    }, (err, post) => {
-        if (post != null) {
-            req.session.message = {
-                message: 'You have registerd with this email previously',
-                role: 'alert-warning',
-            }
-            res.redirect('/register')
-        } else {
-            registration.save().then(() => {
-                req.session.message = {
-                    message: "Registered successfully You will be added to Whatsapp group before the event",
-                    role: "alert-success",
-                }
-                res.redirect('/register')
-            }).catch((err) => {
-                req.session.message = {
-                    message: "Please try again",
-                    role: "alert-warning",
-                }
-                res.redirect('/register')
-            })
-        }
-    })
+    // const registration = new Registration({
+    //     name: req.body.name,
+    //     RegisterNumber: req.body.regno,
+    //     number: req.body.number,
+    //     email: req.body.email,
+    // });
+    // Registration.findOne({
+    //     email: req.body.email
+    // }, (err, post) => {
+    //     if (post != null) {
+    //         req.session.message = {
+    //             message: 'You have registerd with this email previously',
+    //             role: 'alert-warning',
+    //         }
+    //         res.redirect('/register')
+    //     } else {
+    //         registration.save().then(() => {
+    //             req.session.message = {
+    //                 message: "Registered successfully You will be added to Whatsapp group before the event",
+    //                 role: "alert-success",
+    //             }
+    //             res.redirect('/register')
+    //         }).catch((err) => {
+    //             req.session.message = {
+    //                 message: "Please try again",
+    //                 role: "alert-warning",
+    //             }
+    //             res.redirect('/register')
+    //         })
+    //     }
+    // })
 })
 
 
