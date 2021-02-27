@@ -43,15 +43,11 @@ app.use((req, res, next) => {
     next()
 })
 
-<<<<<<< Updated upstream
 
 //mongodb connection
 
 mongoose.connect(`mongodb://localhost/website`, {
-=======
-mongoose.connect('mongodb://localhost:27017/website', {
->>>>>>> Stashed changes
-    useNewUrlParser: true,
+     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 mongoose.connection
