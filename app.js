@@ -383,7 +383,7 @@ app.post('/eventregister', (req, res) => {
         } else {
             registration.save().then(() => {
                 req.session.message = {
-                    message: "Registered successfully You will be added to Whatsapp group before the event",
+                    message: "Registered successfully You will be added to Whatsapp group before the event and Google meet link will be sent to the registered email ",
                     role: "alert-success",
                 }
                 res.redirect('/register')
