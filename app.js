@@ -44,6 +44,7 @@ app.use((req, res, next) => {
 })
 
 mongoose.connect(`mongodb+srv://admin-kaushik:${process.env.DBPASSWORD}@cluster0.gpymw.mongodb.net/ieeepes?retryWrites=true&w=majority`, {
+
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
