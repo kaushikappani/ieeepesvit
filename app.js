@@ -107,6 +107,8 @@ const registrationSchema = {
     RegisterNumber: String,
     number: String,
     email: String,
+    branch: String,
+    domains: String
 };
 
 const subscribeSchema = {
@@ -366,11 +368,36 @@ app.post('/subscribe', (req, res) => {
 
 
 app.post('/eventregister', (req, res) => {
+    let domainSelected = '';
+    let noOfDomains = 0;
+    if (req.body.check1 == 'on') {
+        domainSelected = domainSelected + ' Technical CSE';
+        noOfDomains++
+    }
+    if (req.body.check2 == 'on') {
+        domainSelected = domainSelected + ' Technical non-CSE';
+        noOfDomains++
+    }
+    if (req.body.check3 == 'on') {
+        domainSelected = domainSelected + ' Management';
+        noOfDomains++
+    }
+    if (req.body.check4 == 'on') {
+        domainSelected = domainSelected + ' Editorial';
+        noOfDomains++
+    }
+    if (req.body.check5 == 'on') {
+        domainSelected = domainSelected + ' Design';
+        noOfDomains++
+    }
+
     const registration = new Registration({
         name: req.body.name,
         RegisterNumber: req.body.regno,
         number: req.body.number,
         email: req.body.email,
+        branch: req.body.branch,
+        domains: `${domainSelected}`
     });
     Registration.findOne({
         email: req.body.email
@@ -382,19 +409,28 @@ app.post('/eventregister', (req, res) => {
             }
             res.redirect('/register')
         } else {
-            registration.save().then(() => {
+            if (noOfDomains == 0) {
                 req.session.message = {
-                    message: "Registered successfully You will be added to Whatsapp group before the event and Google meet link will be sent to the registered email ",
-                    role: "alert-success",
+                message: 'Select atleast one domain',
+                role: 'alert-warning',
                 }
                 res.redirect('/register')
-            }).catch((err) => {
-                req.session.message = {
-                    message: "Please try again",
-                    role: "alert-warning",
-                }
-                res.redirect('/register')
-            })
+            } else {
+                registration.save().then(() => {
+                    req.session.message = {
+                        message: "Registered successfully You will be added to Whatsapp group before the event and Google meet link will be sent to the registered email ",
+                        role: "alert-success",
+                    }
+                    res.redirect('/register')
+                }).catch((err) => {
+                    req.session.message = {
+                        message: "Please try again",
+                        role: "alert-warning",
+                    }
+                    res.redirect('/register')
+                })
+            }
+
         }
     })
 })
