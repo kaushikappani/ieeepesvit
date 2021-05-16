@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-   	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>IEEE PES VIT REGISTER</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="icon" type="image/png" href="images/09PES-1.ico"/>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
-    <style>
-        .main{
-            margin-top: 2rem;
-        }
+	<link rel="icon" type="image/png" href="images/09PES-1.ico" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
+	<style>
+		.main {
+			margin-top: 2rem;
+		}
 	</style>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188673615-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188673615-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-188673615-2');
-</script>
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-188673615-2');
+	</script>
 
 </head>
+
 <body>
 	<nav class="navbar bg-light navbar-light navbar-expand-lg">
 		<div class="container">
@@ -42,69 +47,101 @@
 				</ul>
 			</div>
 		</div>
-    </nav>
-     
-  <div class="container main bg-light">
-	  <% if(message){ %>
+	</nav>
+
+	<div class="container main bg-light">
+		<% if(message){ %>
 		<div class="alert <%=message.role%>" role="alert">
-   <%=message.message%>
-</div>
-	  <% } %>
-	  <!-- <div class="row">
-		  <div class="col-lg-12">
-			  <h1>Energy Production In Thermal Power Plant</h1>
-			  <p>IEEE PES VIT is back once again the much awaited, thrilling webinar on 
-We’ve got <B> Ms Saoni banerjee</B> with us from PwC india, she is a technology consultant and would grace the webinar with her experience which would foster innovative thinking towards sustainable approach to save our energy and power resources. Let us dive into the world of energy production with Ms Saoni as it has always served as being the need of the hour. <br>
-<B>There'll also be a separate QnA session regarding placements at the end of the webinar.</B>
+			<%=message.message%>
+		</div>
+		<% } %>
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>Energy Production In Thermal Power Plant</h1>
+				<p>IEEE PES VIT is back once again the much awaited, thrilling webinar on
+					We’ve got <B> Ms Saoni banerjee</B> with us from PwC india, she is a technology consultant and would
+					grace the webinar with her experience which would foster innovative thinking towards sustainable
+					approach to save our energy and power resources. Let us dive into the world of energy production
+					with Ms Saoni as it has always served as being the need of the hour. <br>
+					<B>There'll also be a separate QnA session regarding placements at the end of the webinar.</B>
 					<b>
 						<br>
-						 Date:28<sup>th</sup>,May
-					 <br>
-					 Time:7
+						Date:28<sup>th</sup>,May
+						<br>
+						Time:7
 					</b>
-					</p>
-		  </div>
-		  <div class="col-lg-6 form">
-			  <h2>Register Here</h2>
-			<form action="/eventregister" method="post">
-				<div class="mb-3">
-					<label for="name" class="form-label">Name*</label>
-				<input name="name" id="name" class="form-control" type="text" placeholder="" required>
-				</div>
+				</p>
+			</div>
+			<div class="col-lg-6 form">
+				<h2>Register Here</h2>
+				<form action="/eventregister" method="post">
+					<div class="mb-3">
+						<label for="name" class="form-label">Name*</label>
+						<input name="name" id="name" class="form-control" type="text" placeholder="" required>
+					</div>
 
-				<div class="mb-3">
-					<label for="regno" class="form-label">Registration number (only for VIT students)</label>
-				<input name="regno" id="regno" class="form-control" type="text" placeholder="" >
-				</div>
+					<div class="mb-3">
+						<label for="regno" class="form-label">Registration number*</label>
+						<input name="regno" id="regno" class="form-control" type="text" placeholder="" required>
+					</div>
 
-				<div class="mb-3">
-					<label for="number" class="form-label">Whatsapp number*</label>
-				<input name="number" id="number" class="form-control" type="text" placeholder="" required>
-				</div>
+					<div class="mb-3">
+						<label for="number" class="form-label">Whatsapp number*</label>
+						<input name="number" id="number" class="form-control" type="text" placeholder="" required>
+					</div>
 
-				<div class="mb-3">
-					<label for="email" class="form-label">Email address*</label>
-				<input name="email" id="email" class="form-control" type="email" placeholder="" required>
-				</div>
-				 <button style="width: 100%;" type="submit" class="btn btn-primary">Submit</button>
-			</form>
-		  </div>
-		  <div class="col-lg-6 p-2">
-			  <img style="max-width:100%;" src="img/energyproduction.jpg" alt="energyproduction">
-		  </div>
-	  </div>
-	  <a class="p-3" style="text-align: center;" href="/"><h3>Explore IEEE PES-VIT</h3></a>
-  </div>
-     -->
-<div class="container">
+					<div class="mb-3">
+						<label for="email" class="form-label">VIT Email address*</label>
+						<input name="email" id="email" class="form-control" type="email" placeholder="" required>
+					</div>
+					<div class="mb-3">
+						<label for="branch" class="form-label">Branch*</label>
+						<input name="branch" id="branch" class="form-control" type="text" placeholder="" required>
+					</div>
+
+					<div class="mb-3">
+						<label for="domain" class="form-label">Domain you are interested in*</label>
+						<div class="form-check">
+							<label class="form-check-label" for="check1">
+								<input type="checkbox" class="form-check-input" id="check1" name="option1"
+									value="something" >Option 1
+							</label>
+						</div>
+						<div class="form-check">
+							<label class="form-check-label" for="check2">
+								<input type="checkbox" class="form-check-input" id="check2" name="option2"
+									value="something">Option 2
+							</label>
+						</div>
+						<div class="form-check">
+							<label class="form-check-label">
+								<input type="checkbox" id="check3" class="form-check-input" >Option 3
+							</label>
+						</div>
+					</div>
+
+					<button style="width: 100%;" type="submit" class="btn btn-primary">Submit</button>
+
+				</form>
+			</div>
+			<div class="col-lg-6 p-2">
+				<img style="max-width:100%;" src="img/energyproduction.jpg" alt="energyproduction">
+			</div>
+		</div>
+		<a class="p-3" style="text-align: center;" href="/">
+			<h3>Explore IEEE PES-VIT</h3>
+		</a>
+	</div>
+
+	<!-- <div class="container">
 	<div class="row m-3">
 		<div class="col-lg-12">
 			<h1>No Upcoming events</h1>
 			<a href="/"><h3>Follow IEEE PES-VIT for new events</h3></a>
 		</div>
 	</div>
-</div>
-	
+</div> -->
+
 	<%-include("partials/footer")-%>
 
 
@@ -123,8 +160,5 @@ We’ve got <B> Ms Saoni banerjee</B> with us from PwC india, she is a technolog
 	<script type="text/javascript">
 	</script>
 </body>
+
 </html>
-
-
-
-    
