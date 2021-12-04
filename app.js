@@ -122,6 +122,7 @@ const Subscribe = mongoose.model('Subscribe', subscribeSchema);
 
 //========get routes =====//
 app.get('/', (req, res) => {
+    console.log("get home route /");
     Blog.find({}).limit(3).sort({
         '_id': -1
     }).then((blogs) => {
